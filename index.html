@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- LinkFile -->
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div id="package-list"></div>
+
+    <!-- Filter Checkbox -->
+    <div id="filters-judul-paket">
+      <label>
+        <input
+          type="checkbox"
+          class="checkbox-filter"
+          value="semua"
+          onclick="handleClickCheckbox(this)"
+        />
+        Semua Paket
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          class="checkbox-filter"
+          value="haji"
+          onclick="handleClickCheckbox(this)"
+        />
+        Haji
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          class="checkbox-filter"
+          value="umrah"
+          onclick="handleClickCheckbox(this)"
+        />
+        Umrah
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          class="checkbox-filter"
+          value="tour"
+          onclick="handleClickCheckbox(this)"
+        />
+        Tour
+      </label>
+    </div>
+  </body>
+</html>
