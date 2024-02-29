@@ -44,3 +44,7 @@ body {
     right: 10px;
     font-size: 1rem;
 }
+
+#filter-bulan {
+    display: none;
+}

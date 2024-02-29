@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       allPackageData = data.cards;
       tampilkanPaket();
+
+      initializeCheckbox("semua");
     })
     .catch((error) => {
       console.log("Fetch data nya erros mas broo", error);
@@ -16,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function tampilkanPaket(filterCategory = "", filterBulan = "") {
   const containerDaftarPaket = document.getElementById("package-list");
-  containerDaftarPaket.innerHTML = "";
+  containerDaftarPaket.innerHTML = ""; // Clear List Paket
 
   // All Filter
   const filterPaket = allPackageData.filter((item) => {
@@ -94,11 +96,20 @@ function handleClickCheckbox(clickCheckbox) {
   tampilkanPaket(selectedCategory);
 
   // filter bulan
-  document.getElementById("filter-bulan").style.display = selectedCategory === 'semua' ? 'none' : 'block'
-  
+  document.getElementById("filter-bulan").style.display =
+    selectedCategory === "semua" ? "none" : "block";
 }
 
-// Handle Click Bulan
+// Click Default Checkbox
+function initializeCheckbox(value) {
+  const checkbox = document.querySelector(`.checkbox-filter[value="${value}"]`);
+  if (checkbox) {
+    checkbox.checked = true;
+    handleCheckboxClick(checkbox);
+  }
+}
+
+// Filter bulan
 function handleClickBulan() {
   const pilihBulan = document.getElementById("select-bulan").value;
 
