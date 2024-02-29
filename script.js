@@ -1,4 +1,5 @@
 let allPackageData;
+let selectedCategory = "semua"; // Variabel Filter
 
 document.addEventListener("DOMContentLoaded", () => {
   // Mengambil semua data paket saat halaman dimuat
@@ -13,10 +14,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function tampilkanPaket() {
+function tampilkanPaket(filterCategory = "", filterBulan = "") {
   const containerDaftarPaket = document.getElementById("package-list");
+  containerDaftarPaket.innerHTML = "";
 
-  allPackageData.forEach((item) => {
+  // All Filter
+  const filterPaket = allPackageData.filter((item) => {
+    // Filter Category
+    const category =
+      !filterCategory ||
+      filterCategory === "semua" ||
+      item.judul_paket.toLowerCase().includes(filterCategory);
+
+    // Filter Bulan
+    const bulan =
+      !filterBulan ||
+      parseInt(filterBulan) ===
+        new Date(item.jadwal_keberangkatan).getMonth() + 1;
+
+    return category & bulan;
+  });
+
+  filterPaket.forEach((item) => {
     const elemenPaket = document.createElement("div");
     elemenPaket.classList.add("paket");
 
@@ -69,5 +88,23 @@ function handleClickCheckbox(clickCheckbox) {
     if (checkbox[i] !== clickCheckbox) {
       checkbox[i].checked = false;
     }
+  }
+  // Filter menampilkan paket category yang di pilih
+  selectedCategory = clickCheckbox.value;
+  tampilkanPaket(selectedCategory);
+
+  // filter bulan
+  document.getElementById("filter-bulan").style.display = selectedCategory === 'semua' ? 'none' : 'block'
+  
+}
+
+// Handle Click Bulan
+function handleClickBulan() {
+  const pilihBulan = document.getElementById("select-bulan").value;
+
+  if (pilihBulan === "0") {
+    tampilkanPaket(selectedCategory);
+  } else {
+    tampilkanPaket(selectedCategory, pilihBulan);
   }
 }
