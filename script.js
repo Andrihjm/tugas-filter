@@ -23,47 +23,41 @@ function tampilkanPaket() {
     const namaPaket = document.createElement("h2");
     namaPaket.textContent = item.judul_paket;
 
-    const createParagraph = (text, className) => {
-      const p = document.createElement("p");
-      p.textContent = text;
-      if (className) {
-        p.classList.add(className);
-      }
-      return p;
-    };
+    // Membuat container div
+    const containerDiv = document.createElement("div");
+    containerDiv.classList.add("container-paket");
 
-    const category = createParagraph(item.kategori, "category-class");
-    const jadwal = createParagraph(item.jadwal_keberangkatan, "jadwal-class");
-    const bintang = createParagraph(item.hotel_star, "bintang-class");
-    const harga = createParagraph(item.price_quad_basic, "harga-class");
+    const category = document.createElement("p");
+    category.textContent = `${item.kategori}`;
+    containerDiv.appendChild(category);
+
+    const jadwal = document.createElement("p");
+    jadwal.textContent = `${item.jadwal_keberangkatan}`;
+    containerDiv.appendChild(jadwal);
+
+    const bintang = document.createElement("p");
+    bintang.textContent = `${item.hotel_star}`;
+    containerDiv.appendChild(bintang);
+
+    const harga = document.createElement("p");
+    harga.textContent = `Rp. ${formatRupiah(item.price_quad_basic)}`;
+    containerDiv.appendChild(harga);
 
     const imagePaket = document.createElement("img");
     imagePaket.src = item.image_thumbnail;
     imagePaket.alt = item.judul_paket;
 
-    // const deskripsiPaket = document.createElement("p");
-    // const hargaRupiah = formatRupiah(); // Konversi harga ke Rupiah
-    // deskripsiPaket.innerHTML = `${}, ${
-
-    // }, Rp.${hargaRupiah}-, ${"&#9733;".repeat()}`;
-
     elemenPaket.appendChild(namaPaket);
     elemenPaket.appendChild(imagePaket);
-    elemenPaket.appendChild(category);
-    elemenPaket.appendChild(jadwal);
-    elemenPaket.appendChild(bintang);
-    elemenPaket.appendChild(harga);
+    elemenPaket.appendChild(containerDiv);
 
     containerDaftarPaket.appendChild(elemenPaket);
   });
 }
 
-// Format harga ke Rupiah
+// Format Rupiah
 function formatRupiah(angka) {
-  let reverse = angka.toString().split("").reverse().join("");
-  ribuan = reverse.match(/\d{1,3}/g);
-  ribuan = ribuan.join(".").split("").reverse().join("");
-  return ribuan;
+  return angka.toLocaleString("id-ID");
 }
 
 // Handle Click Checkbox
