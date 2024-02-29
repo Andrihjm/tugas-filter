@@ -27,7 +27,7 @@ function tampilkanPaket() {
     const containerDiv = document.createElement("div");
     containerDiv.classList.add("container-paket");
 
-    const category = document.createElement("p");
+    const category = document.createElement("h3");
     category.textContent = `${item.kategori}`;
     containerDiv.appendChild(category);
 
@@ -35,8 +35,8 @@ function tampilkanPaket() {
     jadwal.textContent = `${item.jadwal_keberangkatan}`;
     containerDiv.appendChild(jadwal);
 
-    const bintang = document.createElement("p");
-    bintang.textContent = `${item.hotel_star}`;
+    const bintang = document.createElement("span");
+    bintang.textContent = "🌟".repeat(item.hotel_star);
     containerDiv.appendChild(bintang);
 
     const harga = document.createElement("p");
