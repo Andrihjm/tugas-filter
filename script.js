@@ -100,7 +100,7 @@ function handleClickCheckbox(clickCheckbox) {
     selectedCategory === "semua" ? "none" : "block";
 }
 
-// Click Default Checkbox
+// Click Default Checkbox Saat Halaman Pertaman Kali di Muat
 function initializeCheckbox(value) {
   const checkbox = document.querySelector(`.checkbox-filter[value="${value}"]`);
   if (checkbox) {
@@ -109,7 +109,7 @@ function initializeCheckbox(value) {
   }
 }
 
-// Filter bulan
+// Filter Untuk Handle Bulan
 function handleClickBulan() {
   const pilihBulan = document.getElementById("select-bulan").value;
 
@@ -118,4 +118,26 @@ function handleClickBulan() {
   } else {
     tampilkanPaket(selectedCategory, pilihBulan);
   }
+}
+
+// Filter Untuk Handle Harga
+document.getElementById("select-harga").addEventListener("change", handleHargaFilter);
+
+function handleHargaFilter() {
+  const selectedHarga = document.getElementById("select-harga").value;
+
+  // Periksa opsi yang dipilih dan urutkan paket sesuai dengan opsi tersebut
+  switch (selectedHarga) {
+    case "paket-A":
+      allPackageData.sort((a, b) => b.price_quad_basic - a.price_quad_basic);
+      break;
+    case "paket-B":
+      allPackageData.sort((a, b) => a.price_quad_basic - b.price_quad_basic);
+      break;
+    default:
+      allPackageData.sort((a, b) => a.id.localeCompare(b.id));
+      break;
+  }
+
+  tampilkanPaket(selectedCategory);
 }
