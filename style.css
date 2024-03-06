@@ -61,3 +61,42 @@ body {
 #filter-bulan {
   display: none;
 }
+
+/* ---------- MEDIA QUERIES ---------- */
+
+@media screen and (max-width: 1024px) {
+  .container-all-paket {
+    flex-direction: column;
+  }
+
+  #package-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #package-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #package-list {
+    grid-template-columns: 1fr;
+  }
+
+  .container-filters {
+    width: 100%;
+  }
+  
+  #filters-judul-paket label {
+    display: flex;
+    gap: 10px;
+  }
+
+  .checkbox-filter {
+    display: flex;
+    flex-direction: row;
+  }
+  
+}
