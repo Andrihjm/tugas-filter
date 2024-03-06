@@ -23,6 +23,8 @@ h1 {
   height: max-content;
   padding: 3rem 1rem;
   background: #afafaf;
+  position: sticky;
+  top: 3rem;
 }
 
 #filters-judul-paket {
