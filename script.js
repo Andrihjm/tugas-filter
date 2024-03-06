@@ -98,6 +98,10 @@ function handleClickCheckbox(clickCheckbox) {
   // filter bulan
   document.getElementById("filter-bulan").style.display =
     selectedCategory === "semua" ? "none" : "block";
+
+  // filter harga
+  document.getElementById("filter-harga").style.display =
+    selectedCategory === "semua" ? "none" : "block";
 }
 
 // Click Default Checkbox Saat Halaman Pertaman Kali di Muat
