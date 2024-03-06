@@ -99,9 +99,9 @@ function handleClickCheckbox(clickCheckbox) {
   document.getElementById("filter-bulan").style.display =
     selectedCategory === "semua" ? "none" : "block";
 
-  // filter harga
-  document.getElementById("filter-harga").style.display =
-    selectedCategory === "semua" ? "none" : "block";
+  // // filter harga
+  // document.getElementById("filter-harga").style.display =
+  //   selectedCategory === "semua" ? "none" : "block";
 }
 
 // Click Default Checkbox Saat Halaman Pertaman Kali di Muat
@@ -125,10 +125,12 @@ function handleClickBulan() {
 }
 
 // Filter Untuk Handle Harga
-document.getElementById("select-harga").addEventListener("change", handleHargaFilter);
+const selectHarga = document.getElementById("select-harga");
+
+selectHarga.addEventListener("change", handleHargaFilter);
 
 function handleHargaFilter() {
-  const selectedHarga = document.getElementById("select-harga").value;
+  const selectedHarga = selectHarga.value;
 
   // Periksa opsi yang dipilih dan urutkan paket sesuai dengan opsi tersebut
   switch (selectedHarga) {
