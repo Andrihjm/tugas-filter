@@ -44,9 +44,9 @@ h1 {
   margin-bottom: 1rem;
 }
 
-/* #filter-harga {
+#filter-harga {
   display: none;
-} */
+}
 
 .content-harga {
   display: flex;
@@ -68,6 +68,12 @@ h1 {
   padding: 1rem 0 2rem 0;
   border-radius: 3px;
   background: #afafaf;
+}
+
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .paket h2 {

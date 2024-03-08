@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function tampilkanPaket(filterCategory = "", filterBulan = "") {
   const containerDaftarPaket = document.getElementById("package-list");
-  containerDaftarPaket.innerHTML = ""; // Clear List Paket
+  containerDaftarPaket.innerHTML = "";
 
   // All Filter
   const filterPaket = allPackageData.filter((item) => {
@@ -37,43 +37,51 @@ function tampilkanPaket(filterCategory = "", filterBulan = "") {
     return category & bulan;
   });
 
-  filterPaket.forEach((item) => {
-    const elemenPaket = document.createElement("div");
-    elemenPaket.classList.add("paket");
+  if (filterPaket.length === 0) {
+    const pesanTidakAdaPaket = document.createElement("p");
+    pesanTidakAdaPaket.classList.add("not-found");
+    pesanTidakAdaPaket.textContent = "Tidak ada paket yang ditemukan.";
+    containerDaftarPaket.appendChild(pesanTidakAdaPaket);
+  } else {
+    // Looping Paket
+    filterPaket.forEach((item) => {
+      const elemenPaket = document.createElement("div");
+      elemenPaket.classList.add("paket");
 
-    const namaPaket = document.createElement("h2");
-    namaPaket.textContent = item.judul_paket;
+      const namaPaket = document.createElement("h2");
+      namaPaket.textContent = item.judul_paket;
 
-    // Membuat container div
-    const containerDiv = document.createElement("div");
-    containerDiv.classList.add("container-paket");
+      // Membuat container div
+      const containerDiv = document.createElement("div");
+      containerDiv.classList.add("container-paket");
 
-    const category = document.createElement("h3");
-    category.textContent = `${item.kategori}`;
-    containerDiv.appendChild(category);
+      const category = document.createElement("h3");
+      category.textContent = `${item.kategori}`;
+      containerDiv.appendChild(category);
 
-    const jadwal = document.createElement("p");
-    jadwal.textContent = `${item.jadwal_keberangkatan}`;
-    containerDiv.appendChild(jadwal);
+      const jadwal = document.createElement("p");
+      jadwal.textContent = `${item.jadwal_keberangkatan}`;
+      containerDiv.appendChild(jadwal);
 
-    const bintang = document.createElement("span");
-    bintang.textContent = "🌟".repeat(item.hotel_star);
-    containerDiv.appendChild(bintang);
+      const bintang = document.createElement("span");
+      bintang.textContent = "🌟".repeat(item.hotel_star);
+      containerDiv.appendChild(bintang);
 
-    const harga = document.createElement("p");
-    harga.textContent = `Rp. ${formatRupiah(item.price_quad_basic)}`;
-    containerDiv.appendChild(harga);
+      const harga = document.createElement("p");
+      harga.textContent = `Rp. ${formatRupiah(item.price_quad_basic)}`;
+      containerDiv.appendChild(harga);
 
-    const imagePaket = document.createElement("img");
-    imagePaket.src = item.image_thumbnail;
-    imagePaket.alt = item.judul_paket;
+      const imagePaket = document.createElement("img");
+      imagePaket.src = item.image_thumbnail;
+      imagePaket.alt = item.judul_paket;
 
-    elemenPaket.appendChild(namaPaket);
-    elemenPaket.appendChild(imagePaket);
-    elemenPaket.appendChild(containerDiv);
+      elemenPaket.appendChild(namaPaket);
+      elemenPaket.appendChild(imagePaket);
+      elemenPaket.appendChild(containerDiv);
 
-    containerDaftarPaket.appendChild(elemenPaket);
-  });
+      containerDaftarPaket.appendChild(elemenPaket);
+    });
+  }
 }
 
 // Format Rupiah
@@ -99,9 +107,9 @@ function handleClickCheckbox(clickCheckbox) {
   document.getElementById("filter-bulan").style.display =
     selectedCategory === "semua" ? "none" : "block";
 
-  // // filter harga
-  // document.getElementById("filter-harga").style.display =
-  //   selectedCategory === "semua" ? "none" : "block";
+  // filter harga
+  document.getElementById("filter-harga").style.display =
+    selectedCategory === "semua" ? "none" : "block";
 }
 
 // Click Default Checkbox Saat Halaman Pertaman Kali di Muat
