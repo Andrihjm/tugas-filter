@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
       allPackageData = data.cards;
       tampilkanPaket();
 
-      initializeCheckbox("semua");
+      clickCheckbox("semua");
     })
     .catch((error) => {
-      console.log("Fetch data nya erros mas broo", error);
+      console.log("Woy error woy", error);
     });
 });
 
@@ -113,7 +113,7 @@ function handleClickCheckbox(clickCheckbox) {
 }
 
 // Click Default Checkbox Saat Halaman Pertaman Kali di Muat
-function initializeCheckbox(value) {
+function clickCheckbox(value) {
   const checkbox = document.querySelector(`.checkbox-filter[value="${value}"]`);
   if (checkbox) {
     checkbox.checked = true;
